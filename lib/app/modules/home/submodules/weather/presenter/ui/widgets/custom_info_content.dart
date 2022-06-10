@@ -14,7 +14,7 @@ class CustomInfoContent extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         children: [
-          const CustomSearchBar(),
+          const CustomAppBar(),
           Center(
             child: SizedBox(
               width: size.width * 0.65,

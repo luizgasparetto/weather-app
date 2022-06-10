@@ -11,7 +11,7 @@ class WeatherUsecaseImp implements IWeatherUsecase {
   const WeatherUsecaseImp(IWeatherRepository weatherRepository) : _weatherRepository = weatherRepository;
 
   @override
-  Future<Either<IAppException, WeatherEntity>> getWeather(GetWeatherDTO params) async {
+  Future<Either<IAppException, WeatherEntity>> call(GetWeatherDTO params) async {
     return await _weatherRepository.getWeather(params);
   }
 }

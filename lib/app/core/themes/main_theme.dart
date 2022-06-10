@@ -21,6 +21,11 @@ class MainTheme {
           fontSize: 19,
           color: Color.fromRGBO(43, 43, 96, 1),
         ),
+        headline5: TextStyle(
+          fontSize: 22,
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }

@@ -11,14 +11,15 @@ class CustomForecastCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.015),
       child: Container(
-        width: size.width * 0.28,
+        width: size.width * 0.3,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white.withOpacity(0.3),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 8),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 'Day 1',
