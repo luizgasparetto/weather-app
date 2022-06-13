@@ -3,9 +3,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
+import '../../../domain/dtos/get_weather_dto.dart';
 import '../../../domain/entities/weather_entity.dart';
 import '../../../domain/usecases/i_weather_usecase.dart';
-import '../../../infra/dtos/get_weather_dto.dart';
 
 part 'weather_event.dart';
 part 'weather_state.dart';

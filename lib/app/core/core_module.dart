@@ -9,6 +9,6 @@ class CoreModule extends Module {
   @override
   List<Bind<Object>> get binds => [
         Bind.factory((i) => Dio(), export: true),
-        Bind.factory((i) => DioServiceImp(i()), export: true),
+        Bind.factory((i) => DioClientImp(i()), export: true),
       ];
 }

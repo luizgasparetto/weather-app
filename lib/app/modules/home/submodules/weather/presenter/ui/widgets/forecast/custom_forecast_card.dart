@@ -19,19 +19,17 @@ class CustomForecastCard extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 8),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 'Day 1',
                 style: TextStyle(color: Theme.of(context).backgroundColor),
               ),
-              SizedBox(height: size.height * 0.01),
-              const Icon(
+              Icon(
                 WeatherIcons.day_sunny,
-                size: 36,
+                size: size.width * 0.12,
                 color: Colors.white,
               ),
-              const Spacer(),
               Padding(
                 padding: EdgeInsets.only(left: size.width * 0.03),
                 child: const Text(

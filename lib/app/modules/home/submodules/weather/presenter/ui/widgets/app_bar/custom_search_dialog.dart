@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'custom_elevated_button.dart';
-import 'custom_form_field.dart';
+import '../custom_elevated_button.dart';
+import '../custom_form_field.dart';
 
 class CustomSearchDialog extends StatelessWidget {
   const CustomSearchDialog({Key? key}) : super(key: key);

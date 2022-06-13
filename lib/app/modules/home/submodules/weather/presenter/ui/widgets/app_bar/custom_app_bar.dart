@@ -11,7 +11,7 @@ class CustomAppBar extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: size.height * 0.035),
+      padding: const EdgeInsets.all(24),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -38,7 +38,6 @@ class CustomAppBar extends StatelessWidget {
               ),
             ],
           ),
-          const Icon(IconlyLight.calendar),
         ],
       ),
     );

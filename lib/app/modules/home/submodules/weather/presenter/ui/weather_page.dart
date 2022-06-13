@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'widgets/custom_forecast_listview.dart';
-import 'widgets/custom_info_content.dart';
+import 'widgets/app_bar/custom_app_bar.dart';
+import 'widgets/current_weather/custom_info_content.dart';
+import 'widgets/forecast/custom_forecast_listview.dart';
 
 class WeatherPage extends StatefulWidget {
   const WeatherPage({Key? key}) : super(key: key);
@@ -28,21 +29,20 @@ class _WeatherPageState extends State<WeatherPage> {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 24),
+        body: SafeArea(
+          child: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
                 child: Column(
-                  children: [
-                    const CustomInfoContent(),
-                    SizedBox(height: size.height * 0.06),
+                  children: const [
+                    CustomAppBar(),
+                    CustomInfoContent(),
                   ],
                 ),
               ),
-            ),
-            const CustomForecastListView(),
-          ],
+              const CustomForecastListView(),
+            ],
+          ),
         ),
       ),
     );

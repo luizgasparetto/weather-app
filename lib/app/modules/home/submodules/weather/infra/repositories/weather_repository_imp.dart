@@ -1,13 +1,15 @@
 // ignore_for_file: unnecessary_lambdas
 
-import '../../../../../../core/shared/exceptions/client_exception.dart';
-import '../../../../../../core/shared/exceptions/i_app_exception.dart';
-import '../../../../../../core/shared/utils/either.dart';
+import 'package:dartz/dartz.dart';
 
+import '../../../../../../core/shared/exceptions/exceptions.dart';
+import '../../../../../../core/shared/exceptions/i_app_exception.dart';
+
+import '../../domain/dtos/get_weather_dto.dart';
 import '../../domain/entities/weather_entity.dart';
 import '../../domain/repositories/i_weather_repository.dart';
 import '../datasources/i_weather_datasource.dart';
-import '../dtos/get_weather_dto.dart';
+
 import '../mappers/weather_mapper.dart';
 
 class WeatherRepositoryImp implements IWeatherRepository {
@@ -20,13 +22,11 @@ class WeatherRepositoryImp implements IWeatherRepository {
     try {
       final response = await _weatherDatasource.getWeather(params);
 
-      final data = response.data;
+      final weather = WeatherMapper.fromMap(response.data);
 
-      final weather = WeatherMapper.fromMap(data);
-
-      return right(weather);
+      return Right(weather);
     } on IAppException catch (error, stacktrace) {
-      throw ClientException(message: error.message, stackTrace: stacktrace);
+      return Left(ClientException(message: error.message, stackTrace: stacktrace));
     }
   }
 }
