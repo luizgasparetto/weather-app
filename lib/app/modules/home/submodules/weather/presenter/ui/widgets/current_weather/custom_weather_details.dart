@@ -17,7 +17,7 @@ class CustomWeatherDetails extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: size.width * 0.23,
+          width: size.width * 0.25,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'custom_app_bar.dart';
 import 'custom_weather_details.dart';
 
 class CustomInfoContent extends StatelessWidget {
@@ -11,10 +10,9 @@ class CustomInfoContent extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
+      padding: const EdgeInsets.only(left: 24, right: 24, bottom: 40),
       child: Column(
         children: [
-          const CustomSearchBar(),
           Center(
             child: SizedBox(
               width: size.width * 0.65,

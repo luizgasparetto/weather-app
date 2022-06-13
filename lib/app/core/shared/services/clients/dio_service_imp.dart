@@ -1,21 +1,29 @@
 import 'package:dio/dio.dart';
 
-import '../../exceptions/client_exception.dart';
+import '../../exceptions/exceptions.dart';
 import 'i_client_service.dart';
 
-class DioServiceImp implements IClientService {
+class DioClientImp implements IClientService {
   final Dio dio;
 
-  DioServiceImp(this.dio);
+  DioClientImp(this.dio);
 
   @override
   Future<ResponseService> get(String url) async {
     try {
-      final result = await dio.get(url);
+      final response = await dio.get(url);
 
-      return ResponseService(data: result.data);
+      return ResponseService(
+        data: response.data,
+        requestOptions: response.requestOptions,
+        statusCode: response.statusCode,
+      );
     } on DioError catch (error, stackTrace) {
       throw ClientException(message: error.message, stackTrace: stackTrace);
     }
   }
+}
+
+class RequestOptionsService extends RequestOptions {
+  RequestOptionsService({required super.path});
 }
