@@ -1,10 +1,10 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'submodules/weather/weather_module.dart';
+import 'presenter/ui/weather_page.dart';
 
 class HomeModule extends Module {
   @override
   List<ModularRoute> get routes => [
-        ModuleRoute('/weather', module: WeatherModule()),
+        ChildRoute(Modular.initialRoute, child: (_, __) => const WeatherPage()),
       ];
 }
