@@ -16,7 +16,7 @@ import '../../../../../../utils/weather_response.dart';
 class WeatherDatasouceMock extends Mock implements IWeatherDatasource {}
 
 void main() {
-  group('Weather Repository', () {
+  group('Weather Repository | ', () {
     late final IWeatherDatasource weatherDatasource;
     late final IWeatherRepository sut;
 
@@ -37,7 +37,7 @@ void main() {
       when(() => weatherDatasource.getWeather(any())).thenAnswer((_) async => response);
     }
 
-    test('| should be able to load a WeatherEntity', () async {
+    test('should be able to load a WeatherEntity', () async {
       mockSuccessDataBuilder();
 
       final result = await sut.getWeather(GetWeatherDTO(place: 'Test Place'));
@@ -45,7 +45,7 @@ void main() {
       expect(result.fold(id, id), isA<WeatherEntity>());
     });
 
-    test('| should be able to load WeatherEntity data', () async {
+    test('should be able to load WeatherEntity data', () async {
       mockSuccessDataBuilder();
 
       final eitherResult = await sut.getWeather(GetWeatherDTO(place: 'Test Place'));
@@ -58,7 +58,7 @@ void main() {
       expect(result.forecasts.length, equals(3));
     });
 
-    test('| should be able to load a WeatherEntity with correct values', () async {
+    test('should be able to load a WeatherEntity with correct values', () async {
       mockSuccessDataBuilder();
 
       final eitherResult = await sut.getWeather(GetWeatherDTO(place: 'Test Place'));

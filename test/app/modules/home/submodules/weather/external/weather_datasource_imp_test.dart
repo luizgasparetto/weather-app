@@ -12,7 +12,7 @@ import 'package:weather_app/app/modules/home/submodules/weather/infra/datasource
 class DioClientMock extends Mock implements IClientService {}
 
 void main() {
-  group('Weather datasource', () {
+  group('Weather datasource | ', () {
     late final IClientService dioClient;
     late final IWeatherDatasource sut;
 

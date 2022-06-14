@@ -16,14 +16,14 @@ void main() {
   late final IWeatherRepository weatherRepository;
   late final IWeatherUsecase sut;
 
-  group('Weather secase', () {
+  group('Weather usecase | ', () {
     setUpAll(() {
       weatherRepository = WeatherRepositoryMock();
       sut = WeatherUsecaseImp(weatherRepository);
       registerFallbackValue(GetWeatherDTO(place: 'Test Place'));
     });
 
-    final goodResponse = WeatherEntity(
+    final response = WeatherEntity(
       temperature: 'Test Temperature',
       wind: 'Test Wind',
       description: 'Test Description',
@@ -36,22 +36,22 @@ void main() {
       ],
     );
 
-    mockErrorDataBuilder() {
+    void mockErrorDataBuilder() {
       when(() => weatherRepository.getWeather(any())).thenAnswer(
         (_) async => Left(WeatherException(message: 'Weather Error')),
       );
     }
 
-    test('| should be able to return a WeatherEntity when use correct params', () async {
-      when(() => weatherRepository.getWeather(any())).thenAnswer((_) async => Right(goodResponse));
+    test('should be able to return a WeatherEntity when use correct params', () async {
+      when(() => weatherRepository.getWeather(any())).thenAnswer((_) async => Right(response));
 
       final result = await sut(GetWeatherDTO(place: 'Curitiba'));
 
       expect(result.fold(id, id), isA<WeatherEntity>());
-      expect(result.fold(id, id), equals(goodResponse));
+      expect(result.fold(id, id), equals(response));
     });
 
-    test('| should throw an WeatherException when use empty params', () async {
+    test('should throw an WeatherException when use empty params', () async {
       mockErrorDataBuilder();
 
       final result = sut(GetWeatherDTO(place: ''));
@@ -59,7 +59,7 @@ void main() {
       expect(result.then((value) => value.fold(id, id)), throwsA(isA<WeatherException>()));
     });
 
-    test('| should throw an WeatherException when params length is less than 3', () async {
+    test('should throw an WeatherException when params length is less than 3', () async {
       mockErrorDataBuilder();
 
       final result = sut(GetWeatherDTO(place: 'xx'));
