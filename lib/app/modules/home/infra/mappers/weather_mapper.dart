@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_lambdas
+
 import '../../domain/entities/forecast_entity.dart';
 import '../../domain/entities/weather_entity.dart';
 import 'forecast_mapper.dart';
@@ -15,7 +17,7 @@ class WeatherMapper extends WeatherEntity {
       temperature: map['temperature'] ?? '',
       wind: map['wind'] ?? '',
       description: map['description'] ?? '',
-      forecasts: List<ForecastEntity>.from(map['forecast']?.map(ForecastMapper.fromMap)),
+      forecasts: List<ForecastEntity>.from(map['forecast']?.map((e) => ForecastMapper.fromMap(e))),
     );
   }
 }

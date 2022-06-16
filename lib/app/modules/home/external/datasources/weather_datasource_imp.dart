@@ -11,6 +11,6 @@ class WeatherDatasourceImp implements IWeatherDatasource {
   Future<ResponseService> getWeather(GetWeatherDTO params) async {
     const apiUrl = String.fromEnvironment('api_url');
 
-    return await _clientService.get('$apiUrl/${params.place}');
+    return await _clientService.get('$apiUrl/${params.place.value}');
   }
 }

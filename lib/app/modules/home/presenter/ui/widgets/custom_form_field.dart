@@ -6,6 +6,7 @@ class CustomFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide.none,

@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 import 'package:weather_app/app/core/shared/exceptions/exceptions.dart';
+import 'package:weather_app/app/core/shared/helpers/value_objects/place.dart';
 import 'package:weather_app/app/modules/home/domain/dtos/get_weather_dto.dart';
 import 'package:weather_app/app/modules/home/domain/entities/forecast_entity.dart';
 import 'package:weather_app/app/modules/home/domain/entities/weather_entity.dart';
@@ -16,11 +17,11 @@ void main() {
   late final IWeatherRepository weatherRepository;
   late final IGetWeatherUsecase sut;
 
-  group('Weather usecase | ', () {
+  group('Weather Usecase | ', () {
     setUpAll(() {
       weatherRepository = WeatherRepositoryMock();
       sut = GetWeatherUsecaseImp(weatherRepository);
-      registerFallbackValue(GetWeatherDTO(place: 'Test Place'));
+      registerFallbackValue(GetWeatherDTO(place: Place('Test Place')));
     });
 
     final response = WeatherEntity(
@@ -45,7 +46,7 @@ void main() {
     test('should be able to return a WeatherEntity when use correct params', () async {
       when(() => weatherRepository.getWeather(any())).thenAnswer((_) async => Right(response));
 
-      final result = await sut(GetWeatherDTO(place: 'Curitiba'));
+      final result = await sut(GetWeatherDTO(place: Place('Test Place')));
 
       expect(result.fold(id, id), isA<WeatherEntity>());
       expect(result.fold(id, id), equals(response));
@@ -54,7 +55,7 @@ void main() {
     test('should throw an WeatherException when use empty params', () async {
       mockErrorDataBuilder();
 
-      final result = sut(GetWeatherDTO(place: ''));
+      final result = sut(GetWeatherDTO(place: Place('xx')));
 
       expect(result.then((value) => value.fold(id, id)), throwsA(isA<WeatherException>()));
     });
@@ -62,7 +63,7 @@ void main() {
     test('should throw an WeatherException when params length is less than 3', () async {
       mockErrorDataBuilder();
 
-      final result = sut(GetWeatherDTO(place: 'xx'));
+      final result = sut(GetWeatherDTO(place: Place('')));
 
       expect(result.then((value) => value.fold(id, id)), throwsA(isA<WeatherException>()));
     });

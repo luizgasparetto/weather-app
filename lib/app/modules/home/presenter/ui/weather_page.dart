@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/themes/colors.dart';
+import '../controllers/home_controller.dart';
 import 'widgets/app_bar/custom_app_bar.dart';
 import 'widgets/current_weather/custom_info_content.dart';
+import 'widgets/custom_gradient_background.dart';
 import 'widgets/forecast/custom_forecast_listview.dart';
 
 class WeatherPage extends StatefulWidget {
-  const WeatherPage({Key? key}) : super(key: key);
+  final HomeController homeController;
+
+  const WeatherPage({Key? key, required this.homeController}) : super(key: key);
 
   @override
   State<WeatherPage> createState() => _WeatherPageState();
@@ -13,34 +18,25 @@ class WeatherPage extends StatefulWidget {
 
 class _WeatherPageState extends State<WeatherPage> {
   @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widget.homeController.handleGetPlace();
+    });
+  }
 
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Color.fromRGBO(89, 231, 253, 1),
-            Color.fromRGBO(89, 203, 247, 1),
-          ],
-        ),
-      ),
+  @override
+  Widget build(BuildContext context) {
+    return CustomGradientBackground(
+      gradient: CustomColors.rain,
       child: Scaffold(
+        appBar: CustomAppBar(weatherBloc: widget.homeController.weatherBloc),
         backgroundColor: Colors.transparent,
         body: SafeArea(
           child: CustomScrollView(
             slivers: [
-              SliverToBoxAdapter(
-                child: Column(
-                  children: const [
-                    CustomAppBar(),
-                    CustomInfoContent(),
-                  ],
-                ),
-              ),
-              const CustomForecastListView(),
+              CustomInfoContent(weatherBloc: widget.homeController.weatherBloc),
+              CustomForecastListView(weatherBloc: widget.homeController.weatherBloc),
             ],
           ),
         ),

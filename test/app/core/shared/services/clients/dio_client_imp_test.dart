@@ -17,7 +17,7 @@ void main() {
     requestOptions: RequestOptions(path: faker.internet.httpsUrl()),
   );
 
-  group('Dio client | ', () {
+  group('Dio Client | ', () {
     test('should be able to establish a connection and return a ResponseService', () async {
       when(() => dio.get(any())).thenAnswer((_) async => response);
 

@@ -48,7 +48,6 @@ linter:
     - avoid_setters_without_getters
     - avoid_returning_null # avoid
     - avoid_returning_this # avoid
-    - omit_local_variable_types # avoid
     - avoid_types_on_closure_parameters # avoid
     - avoid_return_types_on_setters
     - prefer_generic_function_type_aliases

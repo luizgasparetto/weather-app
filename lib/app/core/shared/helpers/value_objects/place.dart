@@ -2,7 +2,7 @@ import '../specifications/weather_specifications.dart';
 import 'i_value_object.dart';
 
 class Place implements IValueObject {
-  String? value;
+  String value;
 
   Place([this.value = '']);
 

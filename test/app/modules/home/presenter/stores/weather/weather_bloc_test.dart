@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:weather_app/app/core/shared/exceptions/exceptions.dart';
+import 'package:weather_app/app/core/shared/helpers/value_objects/place.dart';
 import 'package:weather_app/app/modules/home/domain/dtos/get_weather_dto.dart';
 import 'package:weather_app/app/modules/home/domain/entities/forecast_entity.dart';
 import 'package:weather_app/app/modules/home/domain/entities/weather_entity.dart';
@@ -14,6 +15,7 @@ class WeatherUsecaseMock extends Mock implements IGetWeatherUsecase {}
 void main() {
   group('Weather Bloc | ', () {
     late final IGetWeatherUsecase weatherUsecase;
+    late final Place defaultPlace;
 
     final response = WeatherEntity(
       temperature: 'Test Temperature',
@@ -30,7 +32,8 @@ void main() {
 
     setUpAll(() {
       weatherUsecase = WeatherUsecaseMock();
-      registerFallbackValue(GetWeatherDTO(place: 'Test Place'));
+      defaultPlace = Place('Test Place');
+      registerFallbackValue(GetWeatherDTO(place: defaultPlace));
     });
 
     blocTest<WeatherBloc, WeatherState>(
@@ -39,7 +42,7 @@ void main() {
         when(() => weatherUsecase(any())).thenAnswer((_) async => Right(response));
       },
       build: () => WeatherBloc(weatherUsecase),
-      act: (bloc) => bloc.add(GetWeatherEvent(params: GetWeatherDTO(place: 'Test Place'))),
+      act: (bloc) => bloc.add(GetWeatherEvent(params: GetWeatherDTO(place: defaultPlace))),
       expect: () => [WeatherLoadedState(weather: response)],
     );
 
@@ -49,7 +52,7 @@ void main() {
         when(() => weatherUsecase(any())).thenAnswer((_) async => Left(WeatherException(message: 'Weather Error')));
       },
       build: () => WeatherBloc(weatherUsecase),
-      act: (bloc) => bloc.add(GetWeatherEvent(params: GetWeatherDTO(place: 'Test Place'))),
+      act: (bloc) => bloc.add(GetWeatherEvent(params: GetWeatherDTO(place: defaultPlace))),
       expect: () => [WeatherErrorState()],
     );
   });
