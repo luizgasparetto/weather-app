@@ -5,5 +5,5 @@ import '../dtos/get_weather_dto.dart';
 import '../entities/weather_entity.dart';
 
 abstract class IWeatherRepository {
-  Future<Either<IAppException, WeatherEntity>> getWeather(GetWeatherDTO params);
+  Future<Either<IAppException, WeatherEntity>> getWeatherInfo(GetWeatherDTO params);
 }

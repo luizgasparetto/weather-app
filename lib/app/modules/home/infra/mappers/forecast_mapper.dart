@@ -9,9 +9,9 @@ class ForecastMapper extends ForecastEntity {
 
   factory ForecastMapper.fromMap(Map<String, dynamic> map) {
     return ForecastMapper(
-      day: map['day'] ?? '',
-      temperature: map['temperature'] ?? '',
-      wind: map['wind'] ?? '',
+      day: map['day'],
+      temperature: map['temperature'],
+      wind: map['wind'],
     );
   }
 }

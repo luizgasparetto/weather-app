@@ -23,7 +23,3 @@ class DioClientImp implements IClientService {
     }
   }
 }
-
-class RequestOptionsService extends RequestOptions {
-  RequestOptionsService({required super.path});
-}

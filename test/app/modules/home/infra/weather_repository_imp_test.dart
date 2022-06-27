@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:weather_app/app/core/shared/helpers/value_objects/place.dart';
 
 import 'package:weather_app/app/core/shared/services/clients/dio_client_imp.dart';
 import 'package:weather_app/app/core/shared/services/clients/i_client_service.dart';
@@ -19,11 +20,13 @@ void main() {
   group('Weather Repository | ', () {
     late final IWeatherDatasource weatherDatasource;
     late final IWeatherRepository sut;
+    late final Place defaultPlace;
 
     setUpAll(() {
       weatherDatasource = WeatherDatasouceMock();
       sut = WeatherRepositoryImp(weatherDatasource);
-      registerFallbackValue(GetWeatherDTO(place: 'Test Place'));
+      defaultPlace = Place('Test Place');
+      registerFallbackValue(GetWeatherDTO(place: defaultPlace));
     });
 
     final response = ResponseService(
@@ -40,7 +43,7 @@ void main() {
     test('should be able to load a WeatherEntity', () async {
       mockSuccessDataBuilder();
 
-      final result = await sut.getWeather(GetWeatherDTO(place: 'Test Place'));
+      final result = await sut.getWeatherInfo(GetWeatherDTO(place: defaultPlace));
 
       expect(result.fold(id, id), isA<WeatherEntity>());
     });
@@ -48,7 +51,7 @@ void main() {
     test('should be able to load WeatherEntity data', () async {
       mockSuccessDataBuilder();
 
-      final eitherResult = await sut.getWeather(GetWeatherDTO(place: 'Test Place'));
+      final eitherResult = await sut.getWeatherInfo(GetWeatherDTO(place: defaultPlace));
 
       final result = eitherResult.fold(id, id) as WeatherEntity;
 
@@ -61,7 +64,7 @@ void main() {
     test('should be able to load a WeatherEntity with correct values', () async {
       mockSuccessDataBuilder();
 
-      final eitherResult = await sut.getWeather(GetWeatherDTO(place: 'Test Place'));
+      final eitherResult = await sut.getWeatherInfo(GetWeatherDTO(place: defaultPlace));
 
       final result = eitherResult.fold(id, id) as WeatherEntity;
 
