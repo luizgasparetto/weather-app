@@ -38,13 +38,13 @@ void main() {
     );
 
     void mockErrorDataBuilder() {
-      when(() => weatherRepository.getWeather(any())).thenAnswer(
+      when(() => weatherRepository.getWeatherInfo(any())).thenAnswer(
         (_) async => Left(WeatherException(message: 'Weather Error')),
       );
     }
 
     test('should be able to return a WeatherEntity when use correct params', () async {
-      when(() => weatherRepository.getWeather(any())).thenAnswer((_) async => Right(response));
+      when(() => weatherRepository.getWeatherInfo(any())).thenAnswer((_) async => Right(response));
 
       final result = await sut(GetWeatherDTO(place: Place('Test Place')));
 
@@ -60,7 +60,7 @@ void main() {
       expect(result.then((value) => value.fold(id, id)), throwsA(isA<WeatherException>()));
     });
 
-    test('should throw an WeatherException when params length is less than 3', () async {
+    test('should throw an WeatherException when place\'s name length is less than 3', () async {
       mockErrorDataBuilder();
 
       final result = sut(GetWeatherDTO(place: Place('')));

@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:iconly/iconly.dart';
 
-import '../../../stores/weather/weather_bloc.dart';
-import 'custom_search_dialog.dart';
-import 'shimmer/shimmer_app_bar_text.dart';
+import '../custom_elevated_button.dart';
+import '../custom_form_field.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
-  final WeatherBloc weatherBloc;
+  final String weatherDescription;
 
-  const CustomAppBar({Key? key, required this.weatherBloc}) : super(key: key);
+  const CustomAppBar({Key? key, required this.weatherDescription}) : super(key: key);
 
   @override
   State<CustomAppBar> createState() => _CustomAppBarState();
@@ -39,7 +38,32 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   showDialog(
                     context: context,
                     builder: (context) {
-                      return const CustomSearchDialog();
+                      return AlertDialog(
+                        backgroundColor: Theme.of(context).backgroundColor,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                        ),
+                        content: SizedBox(
+                          width: size.width,
+                          height: size.height / 3,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Choose your country',
+                                style: Theme.of(context).textTheme.headline5,
+                              ),
+                              const Form(
+                                child: CustomFormField(),
+                              ),
+                              CustomElevatedButton(
+                                buttonText: 'Choose',
+                                onPressed: () => Modular.to.pop(),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
                     },
                   );
                 },
@@ -47,23 +71,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
               SizedBox(width: size.width * 0.03),
               Padding(
                 padding: const EdgeInsets.only(top: 7),
-                child: BlocBuilder<WeatherBloc, WeatherState>(
-                  bloc: widget.weatherBloc,
-                  builder: (_, state) {
-                    if (state is WeatherLoadingState) {
-                      return const ShimmerAppBarText();
-                    } else if (state is WeatherLoadedState) {
-                      return Text(
-                        state.weather.description,
-                        style: Theme.of(context).textTheme.headline3,
-                      );
-                    } else {
-                      return Text(
-                        'Error Place :(',
-                        style: Theme.of(context).textTheme.headline3,
-                      );
-                    }
-                  },
+                child: Text(
+                  widget.weatherDescription,
+                  style: Theme.of(context).textTheme.headline3,
                 ),
               )
             ],

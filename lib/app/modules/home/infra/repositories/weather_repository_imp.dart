@@ -17,7 +17,7 @@ class WeatherRepositoryImp implements IWeatherRepository {
   const WeatherRepositoryImp(IWeatherDatasource weatherDatasource) : _weatherDatasource = weatherDatasource;
 
   @override
-  Future<Either<IAppException, WeatherEntity>> getWeather(GetWeatherDTO params) async {
+  Future<Either<IAppException, WeatherEntity>> getWeatherInfo(GetWeatherDTO params) async {
     try {
       final response = await _weatherDatasource.getWeather(params);
 

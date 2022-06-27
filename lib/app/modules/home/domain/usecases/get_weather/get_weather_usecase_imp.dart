@@ -14,10 +14,11 @@ class GetWeatherUsecaseImp implements IGetWeatherUsecase {
 
   @override
   Future<Either<IAppException, WeatherEntity>> call(GetWeatherDTO params) async {
+    // TODO -  Refactor: Return left error and fix the tests.
     if (!params.place.isValid) {
       throw WeatherException(message: 'Invalid place');
     }
 
-    return await _weatherRepository.getWeather(params);
+    return await _weatherRepository.getWeatherInfo(params);
   }
 }

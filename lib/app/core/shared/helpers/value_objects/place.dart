@@ -1,4 +1,4 @@
-import '../specifications/weather_specifications.dart';
+import '../specifications/place_specifications.dart';
 import 'i_value_object.dart';
 
 class Place implements IValueObject {

@@ -43,7 +43,7 @@ void main() {
     test('should be able to load a WeatherEntity', () async {
       mockSuccessDataBuilder();
 
-      final result = await sut.getWeather(GetWeatherDTO(place: defaultPlace));
+      final result = await sut.getWeatherInfo(GetWeatherDTO(place: defaultPlace));
 
       expect(result.fold(id, id), isA<WeatherEntity>());
     });
@@ -51,7 +51,7 @@ void main() {
     test('should be able to load WeatherEntity data', () async {
       mockSuccessDataBuilder();
 
-      final eitherResult = await sut.getWeather(GetWeatherDTO(place: defaultPlace));
+      final eitherResult = await sut.getWeatherInfo(GetWeatherDTO(place: defaultPlace));
 
       final result = eitherResult.fold(id, id) as WeatherEntity;
 
@@ -64,7 +64,7 @@ void main() {
     test('should be able to load a WeatherEntity with correct values', () async {
       mockSuccessDataBuilder();
 
-      final eitherResult = await sut.getWeather(GetWeatherDTO(place: defaultPlace));
+      final eitherResult = await sut.getWeatherInfo(GetWeatherDTO(place: defaultPlace));
 
       final result = eitherResult.fold(id, id) as WeatherEntity;
 

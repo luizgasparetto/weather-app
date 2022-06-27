@@ -11,3 +11,7 @@ class ResponseService extends Response {
     super.statusCode,
   });
 }
+
+class RequestOptionsService extends RequestOptions {
+  RequestOptionsService({required super.path});
+}
