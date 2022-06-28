@@ -1,4 +1,6 @@
 import '../../domain/entities/forecast_entity.dart';
+import '../exceptions/forecast_mapper_exception.dart';
+import '../exceptions/infra_exception.dart';
 
 class ForecastMapper extends ForecastEntity {
   ForecastMapper({
@@ -8,10 +10,14 @@ class ForecastMapper extends ForecastEntity {
   });
 
   factory ForecastMapper.fromMap(Map<String, dynamic> map) {
-    return ForecastMapper(
-      day: map['day'],
-      temperature: map['temperature'],
-      wind: map['wind'],
-    );
+    try {
+      return ForecastMapper(
+        day: map['day'],
+        temperature: map['temperature'],
+        wind: map['wind'],
+      );
+    } on InfraException catch (e) {
+      throw ForecastMapperException(message: e.message, stackTrace: e.stackTrace);
+    }
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:iconly/iconly.dart';
 
 import '../custom_elevated_button.dart';
-import '../custom_form_field.dart';
+import '../custom_text_form_field.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String weatherDescription;
@@ -50,11 +50,11 @@ class _CustomAppBarState extends State<CustomAppBar> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Choose your country',
+                                'Choose your place',
                                 style: Theme.of(context).textTheme.headline5,
                               ),
                               const Form(
-                                child: CustomFormField(),
+                                child: CustomTextFormField(),
                               ),
                               CustomElevatedButton(
                                 buttonText: 'Choose',
@@ -69,12 +69,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 },
               ),
               SizedBox(width: size.width * 0.03),
-              Padding(
-                padding: const EdgeInsets.only(top: 7),
-                child: Text(
-                  widget.weatherDescription,
-                  style: Theme.of(context).textTheme.headline3,
-                ),
+              Text(
+                widget.weatherDescription,
+                style: Theme.of(context).textTheme.headline4,
               )
             ],
           ),

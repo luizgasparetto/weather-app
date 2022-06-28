@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../domain/entities/forecast_entity.dart';
-import 'custom_forecast_card.dart';
+import '../shimmer_default.dart';
 
-class CustomForecastListView extends StatelessWidget {
-  final List<ForecastEntity> forecasts;
-
-  const CustomForecastListView({Key? key, required this.forecasts}) : super(key: key);
+class ShimmerForecastListView extends StatelessWidget {
+  const ShimmerForecastListView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +23,13 @@ class CustomForecastListView extends StatelessWidget {
                     child: ListView.builder(
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
-                      itemCount: forecasts.length,
-                      itemBuilder: (_, i) {
-                        return CustomForecastCard(
-                          day: forecasts[i].day,
-                          temperature: forecasts[i].temperature,
+                      itemCount: 3,
+                      itemBuilder: (_, __) {
+                        return Padding(
+                          padding: EdgeInsets.symmetric(horizontal: size.width * 0.015),
+                          child: ShimmerDefault(
+                            width: size.width * 0.3,
+                          ),
                         );
                       },
                     ),

@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:weather_icons/weather_icons.dart';
 
 class CustomForecastCard extends StatelessWidget {
-  const CustomForecastCard({Key? key}) : super(key: key);
+  final String day;
+  final String temperature;
+
+  const CustomForecastCard({
+    Key? key,
+    required this.day,
+    required this.temperature,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,23 +28,14 @@ class CustomForecastCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Day 1',
-                style: TextStyle(color: Theme.of(context).backgroundColor),
-              ),
-              Icon(
-                WeatherIcons.day_sunny,
-                size: size.width * 0.12,
-                color: Colors.white,
+                'Day $day',
+                style: Theme.of(context).textTheme.headline5,
               ),
               Padding(
                 padding: EdgeInsets.only(left: size.width * 0.03),
-                child: const Text(
-                  '30 º',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(43, 43, 96, 1),
-                  ),
+                child: Text(
+                  temperature,
+                  style: Theme.of(context).textTheme.headline2,
                 ),
               ),
             ],

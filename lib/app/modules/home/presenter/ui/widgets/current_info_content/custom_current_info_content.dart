@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../../../stores/weather/weather_bloc.dart';
+import '../../../../domain/entities/weather_entity.dart';
 
 class CustomInfoContent extends StatelessWidget {
-  final WeatherBloc weatherBloc;
+  final String weatherImage;
+  final WeatherEntity weather;
 
-  const CustomInfoContent({Key? key, required this.weatherBloc}) : super(key: key);
+  const CustomInfoContent({
+    Key? key,
+    required this.weatherImage,
+    required this.weather,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,20 +18,20 @@ class CustomInfoContent extends StatelessWidget {
 
     return SliverToBoxAdapter(
       child: Padding(
-        padding: const EdgeInsets.only(left: 24, right: 24, bottom: 40),
+        padding: const EdgeInsets.only(left: 24, right: 24),
         child: Column(
           children: [
             Center(
               child: SizedBox(
                 width: size.width * 0.65,
-                child: Image.asset('assets/icons/rain.png'),
+                child: Image.asset(weatherImage),
               ),
             ),
             SizedBox(height: size.height * 0.03),
             Padding(
               padding: EdgeInsets.only(left: size.width * 0.08),
               child: Text(
-                '16 º',
+                weather.temperature,
                 style: Theme.of(context).textTheme.headline1,
               ),
             ),
@@ -35,12 +40,10 @@ class CustomInfoContent extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
-                    Icons.wind_power_outlined,
-                    color: Theme.of(context).primaryColor,
+                  Text(
+                    weather.description,
+                    style: Theme.of(context).textTheme.headline4,
                   ),
-                  const Spacer(),
-                  const Text('10 km/h'),
                 ],
               ),
             ),
@@ -50,16 +53,3 @@ class CustomInfoContent extends StatelessWidget {
     );
   }
 }
-
-// Loading
-              // return Column(
-              //   children: [
-              //     const Center(
-              //       child: ShimmerCurrentWeatherImage(),
-              //     ),
-              //     SizedBox(height: size.height * 0.03),
-              //     const Center(
-              //       child: ShimmerWeatherDetailsInfo(),
-              //     ),
-              //   ],
-              // );

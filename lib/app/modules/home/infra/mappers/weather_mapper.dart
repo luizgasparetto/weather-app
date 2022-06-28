@@ -2,6 +2,8 @@
 
 import '../../domain/entities/forecast_entity.dart';
 import '../../domain/entities/weather_entity.dart';
+import '../exceptions/infra_exception.dart';
+import '../exceptions/weather_mapper_exception.dart';
 import 'forecast_mapper.dart';
 
 class WeatherMapper extends WeatherEntity {
@@ -13,11 +15,15 @@ class WeatherMapper extends WeatherEntity {
   });
 
   factory WeatherMapper.fromMap(Map<String, dynamic> map) {
-    return WeatherMapper(
-      temperature: map['temperature'] ?? '',
-      wind: map['wind'] ?? '',
-      description: map['description'] ?? '',
-      forecasts: List<ForecastEntity>.from(map['forecast']?.map((e) => ForecastMapper.fromMap(e))),
-    );
+    try {
+      return WeatherMapper(
+        temperature: map['temperature'] ?? '',
+        wind: map['wind'] ?? '',
+        description: map['description'] ?? '',
+        forecasts: List<ForecastEntity>.from(map['forecast']?.map((e) => ForecastMapper.fromMap(e))),
+      );
+    } on InfraException catch (e) {
+      throw WeatherMapperException(message: e.message, stackTrace: e.stackTrace);
+    }
   }
 }

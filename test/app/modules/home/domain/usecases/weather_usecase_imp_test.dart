@@ -1,26 +1,27 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:weather_app/app/core/shared/dtos/get_weather_dto.dart';
 
 import 'package:weather_app/app/core/shared/exceptions/exceptions.dart';
 import 'package:weather_app/app/core/shared/helpers/value_objects/place.dart';
-import 'package:weather_app/app/modules/home/domain/dtos/get_weather_dto.dart';
+
 import 'package:weather_app/app/modules/home/domain/entities/forecast_entity.dart';
 import 'package:weather_app/app/modules/home/domain/entities/weather_entity.dart';
 import 'package:weather_app/app/modules/home/domain/repositories/i_weather_repository.dart';
-import 'package:weather_app/app/modules/home/domain/usecases/get_weather/get_weather_usecase_imp.dart';
-import 'package:weather_app/app/modules/home/domain/usecases/get_weather/i_get_weather_usecase.dart';
+import 'package:weather_app/app/modules/home/domain/usecases/get_current_weather/get_current_weather_usecase_imp.dart';
+import 'package:weather_app/app/modules/home/domain/usecases/get_current_weather/i_get_current_weather_usecase.dart';
 
 class WeatherRepositoryMock extends Mock implements IWeatherRepository {}
 
 void main() {
   late final IWeatherRepository weatherRepository;
-  late final IGetWeatherUsecase sut;
+  late final IGetCurrentWeatherUsecase sut;
 
   group('Weather Usecase | ', () {
     setUpAll(() {
       weatherRepository = WeatherRepositoryMock();
-      sut = GetWeatherUsecaseImp(weatherRepository);
+      sut = GetCurrentWeatherUsecaseImp(weatherRepository);
       registerFallbackValue(GetWeatherDTO(place: Place('Test Place')));
     });
 
