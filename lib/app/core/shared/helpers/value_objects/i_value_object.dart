@@ -4,4 +4,6 @@ abstract class IValueObject {
   bool get isValid;
 
   String? get hasError;
+
+  void clear();
 }

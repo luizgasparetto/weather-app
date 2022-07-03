@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import '../../exceptions/exceptions.dart';
+import '../../errors/exceptions.dart';
 import 'i_client_service.dart';
 
 class DioClientImp implements IClientService {
@@ -22,4 +22,8 @@ class DioClientImp implements IClientService {
       throw ClientException(message: error.message, stackTrace: stackTrace);
     }
   }
+}
+
+class RequestOptionsService extends RequestOptions {
+  RequestOptionsService({required super.path});
 }
