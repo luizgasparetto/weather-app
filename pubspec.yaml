@@ -19,7 +19,6 @@ dependencies:
   flutter_bloc: ^8.0.1
   dartz: ^0.10.1
   equatable: ^2.0.3
-  weather_icons: ^3.0.0
   iconly: ^1.0.1
   shimmer: ^2.0.0
   

@@ -3,12 +3,13 @@ import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:weather_app/app/core/shared/dtos/get_weather_dto.dart';
+import 'package:weather_app/app/core/shared/errors/exceptions.dart';
 
-import 'package:weather_app/app/core/shared/exceptions/exceptions.dart';
 import 'package:weather_app/app/core/shared/helpers/value_objects/place.dart';
 import 'package:weather_app/app/core/shared/services/clients/i_client_service.dart';
-import 'package:weather_app/app/modules/home/external/datasources/weather_datasource_imp.dart';
-import 'package:weather_app/app/modules/home/infra/datasources/i_weather_datasource.dart';
+
+import 'package:weather_app/app/modules/weather/external/datasources/weather_datasource_imp.dart';
+import 'package:weather_app/app/modules/weather/infra/datasources/i_weather_datasource.dart';
 
 class DioClientMock extends Mock implements IClientService {}
 

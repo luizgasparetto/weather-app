@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import "package:faker/faker.dart";
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:weather_app/app/core/shared/exceptions/exceptions.dart';
+import 'package:weather_app/app/core/shared/errors/exceptions.dart';
 import 'package:weather_app/app/core/shared/services/clients/dio_client_imp.dart';
 import 'package:weather_app/app/core/shared/services/clients/i_client_service.dart';
 

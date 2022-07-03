@@ -14,4 +14,7 @@ class Place implements IValueObject {
 
   @override
   String? get hasError => isValid ? null : errorMessage;
+
+  @override
+  void clear() => value = '';
 }

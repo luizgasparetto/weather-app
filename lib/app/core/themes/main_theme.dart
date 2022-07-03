@@ -13,7 +13,7 @@ class MainTheme {
           color: Color.fromRGBO(43, 43, 96, 1),
         ),
         headline2: TextStyle(
-          fontSize: 30,
+          fontSize: 28,
           fontWeight: FontWeight.bold,
           color: Color.fromRGBO(43, 43, 96, 1),
         ),

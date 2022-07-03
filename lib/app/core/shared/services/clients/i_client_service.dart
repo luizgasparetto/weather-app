@@ -12,6 +12,3 @@ class ResponseService extends Response {
   });
 }
 
-class RequestOptionsService extends RequestOptions {
-  RequestOptionsService({required super.path});
-}
