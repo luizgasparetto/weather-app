@@ -1,6 +1,5 @@
 import '../../domain/entities/forecast_entity.dart';
-import '../errors/forecast_mapper_exception.dart';
-import '../errors/infra_exceptions.dart';
+import '../errors/infra_errors.dart';
 
 class ForecastMapper extends ForecastEntity {
   ForecastMapper({
@@ -16,7 +15,7 @@ class ForecastMapper extends ForecastEntity {
         temperature: map['temperature'],
         wind: map['wind'],
       );
-    } on InfraWeatherException catch (e) {
+    } on InfraWeatherError catch (e) {
       throw ForecastMapperException(message: e.message, stackTrace: e.stackTrace);
     }
   }

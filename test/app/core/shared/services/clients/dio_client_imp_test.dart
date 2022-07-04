@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import "package:faker/faker.dart";
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:weather_app/app/core/shared/errors/exceptions.dart';
@@ -10,11 +9,11 @@ class DioMock extends Mock implements Dio {}
 
 void main() {
   final dio = DioMock();
-  final url = faker.internet.httpUrl();
+  const url = 'test.url';
   final sut = DioClientImp(dio);
 
   final response = ResponseService(
-    requestOptions: RequestOptions(path: faker.internet.httpsUrl()),
+    requestOptions: RequestOptions(path: url),
   );
 
   group('Dio Client | ', () {

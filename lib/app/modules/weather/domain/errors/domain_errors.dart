@@ -1,6 +1,6 @@
 import '../../../../core/shared/errors/i_app_exception.dart';
 
-class DomainWeatherErrors extends IAppException {
+abstract class DomainWeatherErrors extends IAppException {
   DomainWeatherErrors({
     required super.message,
     super.stackTrace,
@@ -9,6 +9,13 @@ class DomainWeatherErrors extends IAppException {
 
 class InvalidPlaceDomainError extends DomainWeatherErrors {
   InvalidPlaceDomainError({
+    required super.message,
+    super.stackTrace,
+  });
+}
+
+class ErrorLoadedDomainError extends DomainWeatherErrors {
+  ErrorLoadedDomainError({
     required super.message,
     super.stackTrace,
   });

@@ -27,7 +27,7 @@ class WeatherModule extends Module {
           Modular.initialRoute,
           child: (context, __) => WeatherPage(
             weatherBloc: context.read<WeatherBloc>(),
-            homeController: context.read<WeatherController>(),
+            weatherController: context.read<WeatherController>(),
           ),
         ),
       ];

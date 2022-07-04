@@ -1,13 +1,15 @@
-import '../../../../core/shared/dtos/get_weather_dto.dart';
+import 'package:flutter/cupertino.dart';
+
 import '../../../../core/shared/helpers/value_objects/place.dart';
+import '../../domain/dtos/get_weather_dto.dart';
 import '../stores/weather/weather_bloc.dart';
 
 class WeatherController {
   final WeatherBloc weatherBloc;
+  final formKey = GlobalKey<FormState>();
+  String? currentPlace;
 
   WeatherController(this.weatherBloc);
-
-  String? currentPlace;
 
   Future<void> handleGetWeather() async {
     if (!placeInstace.isValid) {
@@ -22,6 +24,8 @@ class WeatherController {
     );
 
     weatherBloc.add(GetWeatherEvent(params: params));
+
+    placeInstace.clear();
   }
 
   final placeInstace = Place();

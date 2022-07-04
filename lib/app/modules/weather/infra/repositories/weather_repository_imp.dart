@@ -2,13 +2,13 @@
 
 import 'package:dartz/dartz.dart';
 
-import '../../../../core/shared/dtos/get_weather_dto.dart';
 import '../../../../core/shared/errors/i_app_exception.dart';
+import '../../domain/dtos/get_weather_dto.dart';
 import '../../domain/entities/weather_entity.dart';
 import '../../domain/repositories/i_weather_repository.dart';
 import '../datasources/i_weather_datasource.dart';
 
-import '../errors/infra_exceptions.dart';
+import '../errors/infra_errors.dart';
 import '../mappers/weather_mapper.dart';
 
 class WeatherRepositoryImp implements IWeatherRepository {
@@ -24,8 +24,8 @@ class WeatherRepositoryImp implements IWeatherRepository {
       final weather = WeatherMapper.fromMap(response.data);
 
       return Right(weather);
-    } on InfraWeatherException catch (e) {
-      return Left(InfraWeatherRepositoryException(message: e.message, stackTrace: e.stackTrace));
+    } on InfraWeatherError catch (e) {
+      return Left(InfraWeatherRepositoryError(message: e.message, stackTrace: e.stackTrace));
     }
   }
 }

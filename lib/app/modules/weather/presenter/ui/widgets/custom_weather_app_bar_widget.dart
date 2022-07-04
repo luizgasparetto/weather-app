@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:iconly/iconly.dart';
 
-import '../../../../../core/components/custom_elevated_button.dart';
 import '../../../../../core/components/custom_text_form_field.dart';
+import '../../../../../core/components/custom_validated_button.dart';
 import '../../controllers/home_controller.dart';
 
 class CustomWeatherAppBarWidget extends StatefulWidget implements PreferredSizeWidget {
-  final WeatherController homeController;
+  final WeatherController weatherController;
 
-  const CustomWeatherAppBarWidget({Key? key, required this.homeController}) : super(key: key);
+  const CustomWeatherAppBarWidget({Key? key, required this.weatherController}) : super(key: key);
 
   @override
   State<CustomWeatherAppBarWidget> createState() => _CustomWeatherAppBarWidgetState();
@@ -21,10 +21,10 @@ class CustomWeatherAppBarWidget extends StatefulWidget implements PreferredSizeW
 class _CustomWeatherAppBarWidgetState extends State<CustomWeatherAppBarWidget> {
   @override
   Widget build(BuildContext context) {
-    final homeController = widget.homeController;
+    final weatherController = widget.weatherController;
     final size = MediaQuery.of(context).size;
 
-    final formKey = GlobalKey<FormState>();
+    ValueNotifier<bool> isValid = ValueNotifier(false);
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 24),
@@ -39,7 +39,6 @@ class _CustomWeatherAppBarWidgetState extends State<CustomWeatherAppBarWidget> {
                   color: Theme.of(context).primaryColor,
                 ),
                 onPressed: () {
-                  homeController.place = '';
                   showDialog(
                     context: context,
                     builder: (context) {
@@ -59,19 +58,21 @@ class _CustomWeatherAppBarWidgetState extends State<CustomWeatherAppBarWidget> {
                                 style: Theme.of(context).textTheme.headline3,
                               ),
                               Form(
-                                key: formKey,
+                                key: weatherController.formKey,
                                 child: CustomTextFormField(
-                                  onChanged: (value) => homeController.place = value,
-                                  validator: (_) => homeController.placeInstace.hasError,
+                                  onChanged: (value) {
+                                    weatherController.place = value;
+                                    isValid.value = weatherController.placeInstace.isValid;
+                                  },
+                                  validator: (_) => weatherController.placeInstace.hasError,
                                 ),
                               ),
-                              CustomElevatedButton(
+                              CustomValidatedButton(
                                 buttonText: 'Choose',
+                                isValid: isValid,
                                 onPressed: () async {
-                                  if (formKey.currentState!.validate()) {
-                                    await homeController.handleGetWeather();
-                                    Modular.to.pop();
-                                  }
+                                  await weatherController.handleGetWeather();
+                                  Modular.to.pop();
                                 },
                               ),
                             ],
@@ -84,7 +85,7 @@ class _CustomWeatherAppBarWidgetState extends State<CustomWeatherAppBarWidget> {
               ),
               SizedBox(width: size.width * 0.03),
               Text(
-                homeController.currentPlace!,
+                weatherController.currentPlace!,
                 style: Theme.of(context).textTheme.headline4,
               )
             ],

@@ -1,12 +1,12 @@
 import 'package:dartz/dartz.dart';
-import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:weather_app/app/core/shared/dtos/get_weather_dto.dart';
+
 import 'package:weather_app/app/core/shared/helpers/value_objects/place.dart';
 import 'package:weather_app/app/core/shared/services/clients/dio_client_imp.dart';
 
 import 'package:weather_app/app/core/shared/services/clients/i_client_service.dart';
+import 'package:weather_app/app/modules/weather/domain/dtos/get_weather_dto.dart';
 import 'package:weather_app/app/modules/weather/domain/entities/weather_entity.dart';
 import 'package:weather_app/app/modules/weather/domain/repositories/i_weather_repository.dart';
 import 'package:weather_app/app/modules/weather/infra/datasources/i_weather_datasource.dart';
@@ -32,7 +32,7 @@ void main() {
     final response = ResponseService(
       data: weatherResponse,
       requestOptions: RequestOptionsService(
-        path: faker.internet.httpsUrl(),
+        path: 'test.url',
       ),
     );
 

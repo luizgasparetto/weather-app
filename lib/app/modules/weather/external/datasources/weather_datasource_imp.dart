@@ -1,6 +1,6 @@
-import '../../../../core/shared/dtos/get_weather_dto.dart';
 import '../../../../core/shared/services/clients/i_client_service.dart';
 
+import '../../domain/dtos/get_weather_dto.dart';
 import '../../infra/datasources/i_weather_datasource.dart';
 
 class WeatherDatasourceImp implements IWeatherDatasource {

@@ -24,11 +24,9 @@ class CustomCurrentWeatherInfoWidget extends StatelessWidget {
           height: size.height * 0.6,
           child: Column(
             children: [
-              Center(
-                child: SizedBox(
-                  width: size.width * 0.7,
-                  child: Image.asset(weatherImage),
-                ),
+              SizedBox(
+                width: size.width * 0.55,
+                child: Image.asset(weatherImage),
               ),
               const Spacer(),
               Padding(

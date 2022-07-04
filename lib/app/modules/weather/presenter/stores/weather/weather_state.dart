@@ -17,16 +17,19 @@ class WeatherLoadedState extends WeatherState {
     getWeatherInformations();
   }
 
+  late final String image;
+  late final List<Color> gradient;
+
   void getWeatherInformations() {
     if (weather.description == 'Sunny') {
-      weather.image = 'assets/icons/sun.png';
-      weather.colorGradient = CustomGradients.sunny;
+      image = 'assets/icons/sun.png';
+      gradient = CustomGradients.sunny;
     } else if (weather.description == 'Partly cloudy') {
-      weather.image = 'assets/icons/wind.png';
-      weather.colorGradient = CustomGradients.wind;
+      image = 'assets/icons/wind.png';
+      gradient = CustomGradients.wind;
     } else {
-      weather.image = 'assets/icons/rain.png';
-      weather.colorGradient = CustomGradients.rain;
+      image = 'assets/icons/rain.png';
+      gradient = CustomGradients.rain;
     }
   }
 
