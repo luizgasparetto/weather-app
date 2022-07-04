@@ -6,7 +6,7 @@ import 'i_client_service.dart';
 class DioClientImp implements IClientService {
   final Dio dio;
 
-  DioClientImp(this.dio);
+  const DioClientImp(this.dio);
 
   @override
   Future<ResponseService> get(String url) async {

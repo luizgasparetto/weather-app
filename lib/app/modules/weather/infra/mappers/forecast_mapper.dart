@@ -2,7 +2,7 @@ import '../../domain/entities/forecast_entity.dart';
 import '../errors/infra_errors.dart';
 
 class ForecastMapper extends ForecastEntity {
-  ForecastMapper({
+  const ForecastMapper({
     required super.day,
     required super.temperature,
     required super.wind,

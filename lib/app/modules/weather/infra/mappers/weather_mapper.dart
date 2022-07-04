@@ -7,7 +7,7 @@ import '../errors/infra_errors.dart';
 import 'forecast_mapper.dart';
 
 class WeatherMapper extends WeatherEntity {
-  WeatherMapper({
+  const WeatherMapper({
     required super.temperature,
     required super.wind,
     required super.description,
