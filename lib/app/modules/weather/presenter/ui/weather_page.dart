@@ -14,9 +14,9 @@ import 'widgets/shimmer/shimmer_weather_app_bar.dart';
 
 class WeatherPage extends StatefulWidget {
   final WeatherBloc weatherBloc;
-  final WeatherController homeController;
+  final WeatherController weatherController;
 
-  const WeatherPage({Key? key, required this.weatherBloc, required this.homeController}) : super(key: key);
+  const WeatherPage({Key? key, required this.weatherBloc, required this.weatherController}) : super(key: key);
 
   @override
   State<WeatherPage> createState() => _WeatherPageState();
@@ -25,7 +25,7 @@ class WeatherPage extends StatefulWidget {
 class _WeatherPageState extends State<WeatherPage> {
   @override
   void initState() {
-    widget.homeController.handleGetWeather();
+    widget.weatherController.handleGetWeather();
     super.initState();
   }
 
@@ -52,17 +52,17 @@ class _WeatherPageState extends State<WeatherPage> {
           );
         } else if (state is WeatherLoadedState) {
           return CustomGradientBackground(
-            gradient: state.weather.colorGradient!,
+            gradient: state.gradient,
             child: Scaffold(
               appBar: CustomWeatherAppBarWidget(
-                homeController: widget.homeController,
+                weatherController: widget.weatherController,
               ),
               backgroundColor: Colors.transparent,
               body: SafeArea(
                 child: CustomScrollView(
                   slivers: [
                     CustomCurrentWeatherInfoWidget(
-                      weatherImage: state.weather.image!,
+                      weatherImage: state.image,
                       weather: state.weather,
                     ),
                     CustomForecastListViewWidget(
@@ -74,18 +74,14 @@ class _WeatherPageState extends State<WeatherPage> {
             ),
           );
         } else {
-          // TODO - Make Error Widgets
           return CustomGradientBackground(
-            gradient: CustomGradients.rain,
+            gradient: CustomGradients.errorGradient,
             child: Scaffold(
-              appBar: AppBar(),
+              appBar: CustomWeatherAppBarWidget(weatherController: widget.weatherController),
               backgroundColor: Colors.transparent,
               body: const SafeArea(
                 child: CustomScrollView(
-                  slivers: [
-                    //CustomInfoContent(weatherBloc: widget.homeController.weatherBloc),
-                    //CustomForecastListView(weatherBloc: widget.homeController.weatherBloc),
-                  ],
+                  slivers: [],
                 ),
               ),
             ),

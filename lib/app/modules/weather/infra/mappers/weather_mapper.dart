@@ -3,8 +3,7 @@
 import '../../domain/entities/forecast_entity.dart';
 import '../../domain/entities/weather_entity.dart';
 
-import '../errors/infra_exceptions.dart';
-import '../errors/weather_mapper_exception.dart';
+import '../errors/infra_errors.dart';
 import 'forecast_mapper.dart';
 
 class WeatherMapper extends WeatherEntity {
@@ -23,7 +22,7 @@ class WeatherMapper extends WeatherEntity {
         description: map['description'] ?? '',
         forecasts: List<ForecastEntity>.from(map['forecast']?.map((e) => ForecastMapper.fromMap(e))),
       );
-    } on InfraWeatherException catch (e) {
+    } on InfraWeatherError catch (e) {
       throw WeatherMapperException(message: e.message, stackTrace: e.stackTrace);
     }
   }

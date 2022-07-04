@@ -4,9 +4,9 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/shared/dtos/get_weather_dto.dart';
 import '../../../../../core/themes/custom_gradients.dart';
 
+import '../../../domain/dtos/get_weather_dto.dart';
 import '../../../domain/entities/weather_entity.dart';
 import '../../../domain/usecases/get_current_weather/i_get_current_weather_usecase.dart';
 

@@ -2,8 +2,9 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:weather_app/app/core/shared/dtos/get_weather_dto.dart';
+
 import 'package:weather_app/app/core/shared/helpers/value_objects/place.dart';
+import 'package:weather_app/app/modules/weather/domain/dtos/get_weather_dto.dart';
 import 'package:weather_app/app/modules/weather/domain/entities/forecast_entity.dart';
 import 'package:weather_app/app/modules/weather/domain/entities/weather_entity.dart';
 import 'package:weather_app/app/modules/weather/domain/errors/domain_errors.dart';
@@ -49,7 +50,8 @@ void main() {
     blocTest<WeatherBloc, WeatherState>(
       'Error State',
       setUp: () {
-        when(() => weatherUsecase(any())).thenAnswer((_) async => Left(DomainWeatherErrors(message: 'Weather Error')));
+        when(() => weatherUsecase(any()))
+            .thenAnswer((_) async => Left(ErrorLoadedDomainError(message: 'Weather Error')));
       },
       build: () => WeatherBloc(weatherUsecase),
       act: (bloc) => bloc.add(GetWeatherEvent(params: GetWeatherDTO(place: defaultPlace))),

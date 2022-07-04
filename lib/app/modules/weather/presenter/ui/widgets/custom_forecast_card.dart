@@ -17,7 +17,7 @@ class CustomForecastCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.015),
       child: Container(
-        width: size.width * 0.3,
+        width: size.width * 0.4,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white.withOpacity(0.3),

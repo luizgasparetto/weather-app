@@ -8,7 +8,7 @@ class MainTheme {
       fontFamily: 'PT Sans',
       textTheme: const TextTheme(
         headline1: TextStyle(
-          fontSize: 82,
+          fontSize: 72,
           fontWeight: FontWeight.bold,
           color: Color.fromRGBO(43, 43, 96, 1),
         ),

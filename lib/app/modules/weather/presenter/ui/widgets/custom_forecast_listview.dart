@@ -20,9 +20,9 @@ class CustomForecastListViewWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: SizedBox(
-                  height: size.height * 0.17,
+                  height: size.height * 0.21,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 15),
+                    padding: const EdgeInsets.only(left: 15, bottom: 20),
                     child: ListView.builder(
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,

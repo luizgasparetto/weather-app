@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
-import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:weather_app/app/core/shared/dtos/get_weather_dto.dart';
+
 import 'package:weather_app/app/core/shared/errors/exceptions.dart';
 
 import 'package:weather_app/app/core/shared/helpers/value_objects/place.dart';
 import 'package:weather_app/app/core/shared/services/clients/i_client_service.dart';
+import 'package:weather_app/app/modules/weather/domain/dtos/get_weather_dto.dart';
 
 import 'package:weather_app/app/modules/weather/external/datasources/weather_datasource_imp.dart';
 import 'package:weather_app/app/modules/weather/infra/datasources/i_weather_datasource.dart';
@@ -26,9 +26,9 @@ void main() {
     });
 
     final response = ResponseService(
-      data: faker.randomGenerator.string(10),
+      data: 'xxxxxxx',
       requestOptions: RequestOptions(
-        path: faker.internet.httpsUrl(),
+        path: 'test.url',
       ),
     );
 
