@@ -10,4 +10,4 @@ class CoreModule extends Module {
         Bind.singleton((i) => DioClientImp(i()), export: true),
       ];
 }
-/////
+// gates
