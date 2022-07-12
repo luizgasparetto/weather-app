@@ -6,6 +6,7 @@ import '../stores/weather/weather_bloc.dart';
 
 class WeatherController {
   final WeatherBloc weatherBloc;
+
   final formKey = GlobalKey<FormState>();
   String? currentPlace;
 

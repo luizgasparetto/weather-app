@@ -25,8 +25,8 @@ class WeatherPage extends StatefulWidget {
 class _WeatherPageState extends State<WeatherPage> {
   @override
   void initState() {
-    widget.weatherController.handleGetWeather();
     super.initState();
+    widget.weatherController.handleGetWeather();
   }
 
   @override

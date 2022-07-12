@@ -2,13 +2,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import 'package:weather_app/app/core/shared/errors/exceptions.dart';
-
 import 'package:weather_app/app/core/shared/helpers/value_objects/place.dart';
 import 'package:weather_app/app/core/shared/services/clients/i_client_service.dart';
 import 'package:weather_app/app/modules/weather/domain/dtos/get_weather_dto.dart';
 
 import 'package:weather_app/app/modules/weather/external/datasources/weather_datasource_imp.dart';
+import 'package:weather_app/app/modules/weather/external/errors/datasource_errors.dart';
 import 'package:weather_app/app/modules/weather/infra/datasources/i_weather_datasource.dart';
 
 class DioClientMock extends Mock implements IClientService {}
@@ -41,12 +40,12 @@ void main() {
       expect(result.data, isNotEmpty);
     });
 
-    test('should throw a ClientException when calls datasource', () async {
-      when(() => dioClient.get(any())).thenThrow(ClientException(message: 'Test Error'));
+    test('should throw a DatasourceLoadedError when calls datasource', () async {
+      when(() => dioClient.get(any())).thenThrow(DatasourceLoadedError(message: 'Test Error'));
 
       final result = sut.getWeather(GetWeatherDTO(place: defaultPlace));
 
-      expect(result, throwsA(isA<ClientException>()));
+      expect(result, throwsA(isA<DatasourceLoadedError>()));
     });
   });
 }

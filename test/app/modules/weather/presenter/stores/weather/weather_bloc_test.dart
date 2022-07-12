@@ -18,7 +18,7 @@ void main() {
     late final IGetCurrentWeatherUsecase weatherUsecase;
     late final Place defaultPlace;
 
-    final response = WeatherEntity(
+    const response = WeatherEntity(
       temperature: 'Test Temperature',
       wind: 'Test Wind',
       description: 'Test Description',
@@ -40,7 +40,7 @@ void main() {
     blocTest<WeatherBloc, WeatherState>(
       'Loaded State',
       setUp: () {
-        when(() => weatherUsecase(any())).thenAnswer((_) async => Right(response));
+        when(() => weatherUsecase(any())).thenAnswer((_) async => const Right(response));
       },
       build: () => WeatherBloc(weatherUsecase),
       act: (bloc) => bloc.add(GetWeatherEvent(params: GetWeatherDTO(place: defaultPlace))),
@@ -50,8 +50,9 @@ void main() {
     blocTest<WeatherBloc, WeatherState>(
       'Error State',
       setUp: () {
-        when(() => weatherUsecase(any()))
-            .thenAnswer((_) async => Left(ErrorLoadedDomainError(message: 'Weather Error')));
+        when(() => weatherUsecase(any())).thenAnswer(
+          (_) async => Left(ErrorLoadedDomainError(message: 'Weather Error')),
+        );
       },
       build: () => WeatherBloc(weatherUsecase),
       act: (bloc) => bloc.add(GetWeatherEvent(params: GetWeatherDTO(place: defaultPlace))),
