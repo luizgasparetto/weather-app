@@ -6,7 +6,7 @@ class WeatherEntity {
   final String description;
   final List<ForecastEntity> forecasts;
 
-  WeatherEntity({
+  const WeatherEntity({
     required this.temperature,
     required this.wind,
     required this.description,

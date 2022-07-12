@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:iconly/iconly.dart';
 
-import '../../../../../core/components/custom_text_form_field.dart';
-import '../../../../../core/components/custom_validated_button.dart';
+import '../../../../../core/shared/components/custom_text_form_field.dart';
+import '../../../../../core/shared/components/custom_validated_button.dart';
 import '../../controllers/home_controller.dart';
 
 class CustomWeatherAppBarWidget extends StatefulWidget implements PreferredSizeWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/components/shimmer_default.dart';
+import '../../../../../../core/shared/components/shimmer_default.dart';
 
 class ShimmerForecastListView extends StatelessWidget {
   const ShimmerForecastListView({Key? key}) : super(key: key);

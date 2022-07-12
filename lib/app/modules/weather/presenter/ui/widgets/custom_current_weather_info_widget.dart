@@ -37,7 +37,7 @@ class CustomCurrentWeatherInfoWidget extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: size.width * 0.35,
+                width: size.width * 0.4,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

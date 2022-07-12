@@ -1,8 +1,9 @@
+import '../../../../core/shared/errors/i_app_exception.dart';
 import '../../domain/entities/forecast_entity.dart';
 import '../errors/infra_errors.dart';
 
 class ForecastMapper extends ForecastEntity {
-  ForecastMapper({
+  const ForecastMapper({
     required super.day,
     required super.temperature,
     required super.wind,
@@ -15,7 +16,7 @@ class ForecastMapper extends ForecastEntity {
         temperature: map['temperature'],
         wind: map['wind'],
       );
-    } on InfraWeatherError catch (e) {
+    } on IAppException catch (e) {
       throw ForecastMapperException(message: e.message, stackTrace: e.stackTrace);
     }
   }
